@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('github_form');
+    const form = document.getElementById('github-form');
     const searchInput = document.getElementById('search');
     const userList = document.getElementById('user-list');
     const reposList = document.getElementById('repos-list');
