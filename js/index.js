@@ -79,5 +79,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to display search results for repositiories 
+    function displayRepos(repos) {
+        reposList.innerHTML = '';
+        repos.forEach(repo => {
+            const li = document.createElement('li');
+            li.textContent = repo.full_name;
+            reposList.appendChild(li);
+        });
+    }
+
+    // Function to get repositories for a specific user
+    
 
 })
