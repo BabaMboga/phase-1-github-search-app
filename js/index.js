@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('github_fornm');
+    const form = document.getElementById('github_form');
     const searchInput = document.getElementById('search');
     const userList = document.getElementById('user-list');
     const reposList = document.getElementById('repos-list');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Search user function
     function searchUsers(searchTerm) {
-        const apiUrl = `https://api.github.com/searcg/users?q=${searchTerm}`;
+        const apiUrl = `https://api.github.com/search/users?q=${searchTerm}`;
         fetch(apiUrl, {
             headers: {
                 Accept: 'application/vnd.github.v3+json'
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to search for repositories
     function searchRepos(searchTerm) {
-        const apiUrl = `https://api.github.com/searcg/repositories?q=${searchTerm}`;
+        const apiUrl = `https://api.github.com/search/repositories?q=${searchTerm}`;
         fetch(apiUrl, {
             headers: {
                 Accept: 'application/vnd.github.v3+json'
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Bonus: Toggle search type between user and repo
     const toggleButton = document.createElement('button');
-    toggleButton.textContent = 'ToggleSearch Type';
+    toggleButton.textContent = 'Toggle Search Type';
     toggleButton.addEventListener('click', function () {
         searchType = searchType === 'user' ? 'repo' : 'user';
         searchInput.placeholder = `Search ${searchType === 'user' ? 'Users' : 'Repos'}`;
