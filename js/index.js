@@ -20,7 +20,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Search user function
     function searchUsers(searchTerm) {
         const apiUrl = `https://api.github.com/searcg/users?q=${searchTerm}`;
-        fetch(apiUrl)
+        fetch(apiUrl, {
+            headers: {
+                Accept: 'application/vnd.github.v3+json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Bad Network reponse was not ok');
+            }
+
+            return response.json();
+        })
+        .then(data => {
+            displayUsers(data.items);
+        })
+        .catch(error => {
+            console.error('There was a problem with your fetch operation:', error);
+        });
     }
 
 })
