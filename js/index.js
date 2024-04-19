@@ -89,6 +89,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to get repositories for a specific user
-    
+    function getUserRepos(username) {
+        const apiUrl = `https://api.github.com/users/${username}/repos`;
+        fetch(apiUrl, {
+            headers: {
+                Accept: 'application/vnd.github.v3+json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(' Bad network response');
+            }
+            return response.json()
+        })
+        .then(data => {
+            displayRepos(data);
+        })
+        .catch(error => {
+            console.error('There was a problem with your fetch operation:', error);
+        });
+    }
 
-})
+    // Bonus: Toggle search type between user and repo
+    const toggleButton = document.createElement('button');
+    toggleButton.textContent = 'ToggleSearch Type';
+    toggleButton.addEventListener('click', function () {
+        searchType = searchType === 'user' ? 'repo' : 'user';
+        searchInput.placeholder = `Search ${searchType === 'user' ? 'Users' : 'Repos'}`;
+    });
+
+    form.appendChild(toggleButton);
+
+});
