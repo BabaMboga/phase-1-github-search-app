@@ -54,6 +54,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 
+    // Function to search for repositories
+    function searchRepos(searchTerm) {
+        const apiUrl = `https://api.github.com/searcg/repositories?q=${searchTerm}`;
+        fetch(apiUrl, {
+            headers: {
+                Accept: 'application/vnd.github.v3+json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+
+        })
+        .then(data => {
+            displayRepos(data.items);
+
+        })
+        .catch(error => {
+            console.error('There was a problem with your fetch operation:', error);
+        });
+    }
+
+    // Function to display search results for repositiories 
 
 })
