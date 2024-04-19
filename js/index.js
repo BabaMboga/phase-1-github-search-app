@@ -40,4 +40,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Function to display search results for users
+
+    function displayUsers(users) {
+        userList.innerHTML = ''
+        users.forEach(user => {
+            const li = document.createElement('li');
+            li.innerHTML = `<img src="${user.avatar_url}" alt="${user.login}" width="50px">`
+            li.addEventListener('click', function() {
+                getUserRepos(user.login);
+            });
+            userList.appendChild(li);
+        });
+    }
+
+    // 
+
 })
